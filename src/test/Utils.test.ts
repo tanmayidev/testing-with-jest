@@ -3,7 +3,17 @@ import { Utils } from '../app/Utils';
 
 describe('Utils test suite', () => {
 // tests can be written inside 'it' or 'test', here we are using 'test'
-    test('first test', () => {
+
+    beforeEach(() => {
+        console.log('before each'); // prints before each test is execute
+    })
+
+    beforeAll(() => {
+        console.log('before all'); // prints once before all test cases are executed
+    })
+
+    test.skip('first test', () => { 
+        // test.skip with skip execution of this test ; test.only will execute only this test
         const result = Utils.toUpperCase('abc');
         //assertion
         expect(result).toBe('ABC');
@@ -26,7 +36,9 @@ describe('Utils test suite', () => {
             password: 'pass'
         }
         expect(parsedUrl.query).toEqual(expectedQuery);      
-        // expect(expectedQuery).toBe(expectedQuery);     
+        //expect(expectedQuery).toBe(expectedQuery);     
     });
+
+    test.todo('test invalid URL')
 
 });
