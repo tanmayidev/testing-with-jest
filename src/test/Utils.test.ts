@@ -47,6 +47,7 @@ describe('Utils test suite', () => {
     // the above can be used when you want to write a test later and it will not throw an error
 
     /* testing errors: wrapping functions, toThrow, toBeInstanceOf, toHaveProperty */
+    
     test('test invalid URL', () => {
         function expectError() {
             Utils.parseUrl('');
