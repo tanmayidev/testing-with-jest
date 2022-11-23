@@ -4,6 +4,8 @@ import { Utils } from '../app/Utils';
 describe('Utils test suite', () => {
 // tests can be written inside 'it' or 'test', here we are using 'test'
 
+
+    /* Jest hooks: beforeAll, beforeEach, afterEach, afterAll */
     beforeEach(() => {
         console.log('before each'); // prints before each test is execute
     })
@@ -19,6 +21,8 @@ describe('Utils test suite', () => {
         expect(result).toBe('ABC');
     });
 
+
+    /* Assertions: expect toBe and toEqual */
     test('parse simple URL', () => {
         const parsedUrl = Utils.parseUrl('http://localhost:8080/login');
         expect(parsedUrl.href).toBe('http://localhost:8080/login');
@@ -39,6 +43,30 @@ describe('Utils test suite', () => {
         //expect(expectedQuery).toBe(expectedQuery);     
     });
 
-    test.todo('test invalid URL')
+    //test.todo('test invalid URL') 
+    // the above can be used when you want to write a test later and it will not throw an error
+
+    /* testing errors: wrapping functions, toThrow, toBeInstanceOf, toHaveProperty */
+    test('test invalid URL', () => {
+        function expectError() {
+            Utils.parseUrl('');
+        }
+        expect(expectError).toThrowError('Empty url');
+    });
+
+    test('test invalid URL with arrow function', () => {
+        expect(() => {
+            Utils.parseUrl('')
+        }).toThrowError('Empty url');
+    });
+
+    test.only('test invalid URL with try catch', () => {
+        try {
+            Utils.parseUrl('');
+        } catch (error) {
+            expect(error).toBeInstanceOf(Error);
+            expect(error).toHaveProperty('message', 'Empty url!');
+        }
+    });
 
 });
