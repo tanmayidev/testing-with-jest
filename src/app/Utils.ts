@@ -12,4 +12,10 @@ export class Utils {
     public static toUpperCase(arg: string): string {
         return arg.toUpperCase();
     }
+
+    /*istanbul ignore next */ 
+    // this can be used when you want to ignore a function or a class in the unit tests
+    public static ignoreFunction(arg: string): string {
+        return ''
+    }
 }
